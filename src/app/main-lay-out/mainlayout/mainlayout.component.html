@@ -1,0 +1,125 @@
+<!-- mainlayout.component.html - Complete Responsive Version -->
+<mat-sidenav-container class="sidenav-container">
+
+  <!-- Mobile Header (visible only on mobile) -->
+  <mat-toolbar class="mobile-header" *ngIf="isMobile">
+    <button mat-icon-button (click)="toggleMainSidebar()" class="mobile-menu-button">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span class="mobile-title">{{ getSelectedModule()?.name || 'Dashboard' }}</span>
+    <span class="spacer"></span>
+    <button mat-icon-button (click)="logout()" class="mobile-logout-button">
+      <mat-icon>logout</mat-icon>
+    </button>
+  </mat-toolbar>
+
+  <!-- Main Sidebar -->
+  <mat-sidenav #sideNav [opened]="sidenavIsOpened && !isMobile" [mode]="getSidebarMode()" class="main-sidebar"
+    [class.mobile-sidebar]="isMobile" *ngIf="!hiddenItems" [disableClose]="disableSideNavClose && !isMobile">
+
+    <div class="sidebar-content">
+      <!-- Mobile User Info -->
+      <div class="mobile-user-info" *ngIf="isMobile && currentUserEmail">
+        <div class="user-avatar">
+          <mat-icon>account_circle</mat-icon>
+        </div>
+        <div class="user-details">
+          <span class="user-email">{{ currentUserEmail }}</span>
+          <span class="user-role">{{ currentUserRole }}</span>
+        </div>
+      </div>
+
+      <mat-divider *ngIf="isMobile && currentUserEmail"></mat-divider>
+
+      <!-- Menu Items -->
+      <ng-container *ngIf="isSuperUser !== null">
+        <ng-container *ngFor="let menu of sideMenu">
+          <mat-card *ngIf="menu.id !== 'Admin' || isSuperUser" class="menu-card"
+            [class.active]="selectedModuleId === menu.id" [class.mobile-menu-card]="isMobile"
+            (click)="toggleSideBar(menu.id, sideNavBar.opened)" matRipple [matTooltip]="!isMobile ? menu.name : ''"
+            [matTooltipDisabled]="isMobile" matTooltipPosition="right">
+
+            <div class="mat-icon-container">
+              <mat-icon class="menu-icon">{{ menu.icon }}</mat-icon>
+            </div>
+            <span class="menu-label" [class.mobile-label]="isMobile">{{ menu.name }}</span>
+          </mat-card>
+        </ng-container>
+      </ng-container>
+    </div>
+  </mat-sidenav>
+
+  <!-- Subsection Sidebar -->
+  <mat-sidenav #sideNavBar [mode]="getSubsectionSidebarMode()" class="subsection-sidebar"
+    [class.mobile-subsection]="isMobile" *ngIf="!hiddenItems" [disableClose]="false">
+
+    <div class="subsection-header" *ngIf="getSelectedModule()">
+      <mat-icon class="header-icon">{{ getSelectedModule()?.icon }}</mat-icon>
+      <h3 class="header-title">{{ getSelectedModule()?.name }}</h3>
+      <button mat-icon-button class="close-button" (click)="sideNavBar.close()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="subsection-content" *ngIf="getSelectedModule()?.subsections">
+      <mat-nav-list class="subsection-nav-list">
+        <mat-list-item *ngFor="let subsection of getSelectedModule()?.subsections" class="subsection-item"
+          [routerLink]="subsection.route" routerLinkActive="active-subsection" (click)="sideNavBar.close()">
+
+          <mat-icon matListItemIcon *ngIf="subsection.icon">
+            {{ subsection.icon }}
+          </mat-icon>
+          <span matListItemTitle>{{ subsection.name }}</span>
+        </mat-list-item>
+      </mat-nav-list>
+
+      <!-- Logout Section -->
+      <div class="logout-container">
+        <button mat-raised-button color="warn" class="logout-button" (click)="logout()" *ngIf="!isMobile">
+          <mat-icon>logout</mat-icon>
+          Logout
+        </button>
+      </div>
+    </div>
+  </mat-sidenav>
+
+  <!-- Main Content -->
+  <mat-sidenav-content class="main-content" [class.mobile-content]="isMobile" [class.tablet-content]="isTablet"
+    (click)="onMainContentClick()">
+
+    <div class="content-padding" [class.mobile-padding]="isMobile">
+      <!-- Loading indicator for iframe -->
+      <div class="iframe-loading" *ngIf="currentLink && rawLink">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        <p>Loading external content...</p>
+      </div>
+
+      <!-- Router Outlet -->
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+<!-- Iframe Container for External Links -->
+<div class="iframe-container" *ngIf="currentLink" [class.mobile-iframe]="isMobile">
+  <div class="iframe-header">
+    <button mat-icon-button (click)="closeIframe()" class="iframe-close-button">
+      <mat-icon>close</mat-icon>
+    </button>
+    <span class="iframe-url">{{ rawLink }}</span>
+    <button mat-icon-button (click)="openExternalLink(rawLink!)" class="iframe-external-button">
+      <mat-icon>open_in_new</mat-icon>
+    </button>
+  </div>
+
+  <iframe #iframeRef [src]="currentLink" class="external-iframe" frameborder="0"
+    sandbox="allow-same-origin allow-scripts allow-popups allow-forms">
+  </iframe>
+</div>
+
+<!-- Backdrop for mobile sidebars -->
+<div class="mobile-backdrop" *ngIf="isMobile && (sideNav?.opened || sideNavBar?.opened)"
+  (click)="sideNav?.close(); sideNavBar?.close()">
+</div>

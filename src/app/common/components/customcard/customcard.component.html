@@ -1,0 +1,104 @@
+<mat-card 
+  class="custom-card rounded-2xl shadow-md border border-gray-200 bg-white hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+  [matTooltip]="shouldShowTooltip ? fullDescription : ''"
+  matTooltipClass="custom-tooltip"
+  matTooltipPosition="above">
+  
+  <div class="card-header">
+    <mat-card-title class="card-title text-xl font-bold text-gray-800 mb-2">
+      {{ title }} 
+      <span class="country-code">{{ countryCode }}</span>
+    </mat-card-title>
+  </div>
+
+  <mat-card-content class="card-content">
+    <p class="description text-gray-600 leading-relaxed" 
+       [class.truncated]="isDescriptionTruncated"
+       #descriptionElement>
+      {{ displayDescription }}
+    </p>
+  </mat-card-content>
+
+  <!-- Action Buttons -->
+  <div class="action-buttons grid gap-2 mt-4">
+    <!-- Primary Actions -->
+    <div class="primary-actions">
+      <button 
+        mat-raised-button 
+        color="primary" 
+        class="action-btn primary-btn" 
+        *ngIf="websiteLink" 
+        (click)="openInFrame(websiteLink)"
+        matTooltip="Visit the main website">
+        <mat-icon>language</mat-icon>
+        <span class="btn-text">Website</span>
+      </button>
+      
+      <button 
+        mat-raised-button 
+        color="accent" 
+        class="action-btn accent-btn" 
+        *ngIf="youtubeLink" 
+        (click)="openInFrame(youtubeLink)"
+        matTooltip="Watch on YouTube">
+        <mat-icon>play_circle</mat-icon>
+        <span class="btn-text">YouTube</span>
+      </button>
+    </div>
+
+    <!-- Secondary Actions -->
+    <div class="secondary-actions">
+      <button 
+        mat-stroked-button 
+        color="primary" 
+        class="action-btn secondary-btn" 
+        *ngIf="aboutWebsiteLink" 
+        (click)="openInFrame(aboutWebsiteLink)"
+        matTooltip="Learn more about this website">
+        <mat-icon>info</mat-icon>
+        <span class="btn-text">About Site</span>
+      </button>
+      
+      <button 
+        mat-stroked-button 
+        color="accent" 
+        class="action-btn secondary-btn" 
+        *ngIf="aboutCountryLink" 
+        (click)="openInFrame(aboutCountryLink)"
+        matTooltip="Learn about this country">
+        <mat-icon>public</mat-icon>
+        <span class="btn-text">Country Info</span>
+      </button>
+    </div>
+
+    <!-- Admin Actions (Hidden Data) -->
+    <div class="admin-actions" *ngIf="isSuperUser" 
+         [@slideInUp]="isSuperUser ? 'in' : 'out'">
+      <div class="admin-divider"></div>
+      <button 
+        mat-flat-button 
+        color="warn" 
+        class="action-btn admin-btn update-btn" 
+        (click)="openFormDialog()"
+        matTooltip="Update card information">
+        <mat-icon>edit</mat-icon>
+        <span class="btn-text">Update</span>
+      </button>
+      
+      <button 
+        mat-flat-button 
+        color="primary" 
+        class="action-btn admin-btn delete-btn" 
+        (click)="onDelete()"
+        matTooltip="Delete this card">
+        <mat-icon>delete</mat-icon>
+        <span class="btn-text">Delete</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Status Indicator -->
+  <div class="status-indicator" *ngIf="isSuperUser">
+    <mat-icon class="status-icon">admin_panel_settings</mat-icon>
+  </div>
+</mat-card>

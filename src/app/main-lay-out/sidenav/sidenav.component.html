@@ -1,0 +1,19 @@
+<div class="legacy-sidenav" *ngIf="selectedModule">
+    <div class="legacy-header">
+        <mat-icon>{{selectedModule.icon}}</mat-icon>
+        <h3>{{selectedModule.name}}</h3>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <mat-nav-list *ngIf="selectedModule.subsections">
+        <mat-list-item *ngFor="let subsection of selectedModule.subsections">
+
+            <mat-icon matListItemIcon *ngIf="subsection.icon">
+                {{subsection.icon}}
+            </mat-icon>
+
+            <span matListItemTitle>{{subsection.name}}</span>
+        </mat-list-item>
+    </mat-nav-list>
+</div>

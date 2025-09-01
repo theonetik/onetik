@@ -1,0 +1,27 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="superuser-form">
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name" />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Email</mat-label>
+    <input matInput formControlName="email" />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="full-width" *ngIf="!data?.id">
+    <mat-label>Password</mat-label>
+    <input matInput type="password" formControlName="password" />
+  </mat-form-field>
+
+ <mat-form-field appearance="fill" class="full-width">
+  <mat-label>Role</mat-label>
+  <mat-select formControlName="role" [disabled]="true"> <!-- Fixed binding -->
+    <mat-option value="superuser">Superuser</mat-option>
+  </mat-select>
+</mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid || isSubmitting">
+    {{ data?.id ? 'Update' : 'Add' }} Super User
+  </button>
+</form>
