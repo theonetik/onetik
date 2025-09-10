@@ -11,5 +11,5 @@ import { MainlayoutComponent } from './main-lay-out/mainlayout/mainlayout.compon
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
-  title = 'onetracksolutions';
+  title = 'TheOneTik';
 }
