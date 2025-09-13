@@ -1,4 +1,4 @@
-name: Deploy to Firebase Hosting
+name: Deploy Angular App to Firebase Hosting
 
 on:
   push:
@@ -10,25 +10,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Checkout code
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # 2️⃣ Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
 
-      # 3️⃣ Install dependencies
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
-      # 4️⃣ Build Angular app
       - name: Build Angular app
         run: npm run build -- --configuration production
 
-      # 5️⃣ Deploy to Firebase Hosting
       - name: Deploy to Firebase Hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
