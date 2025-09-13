@@ -210,7 +210,7 @@ export class MainlayoutComponent implements OnDestroy {
     {
       id: 'dashboard',
       icon: 'dashboard',
-      name: 'Dashboard',
+      name: 'GeoPortal',
       subsections: [
         { 
           id: 'world-visa', 
