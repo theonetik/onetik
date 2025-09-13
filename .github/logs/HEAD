@@ -1,7 +1,0 @@
-0000000000000000000000000000000000000000 a4659bf7c139513145823b55ed1e9da6a3f06b2d Abdul Ghaffar <hamza.badar@introtechsolutions.com> 1756748301 +0500	commit (initial): clean: fresh repo setup
-a4659bf7c139513145823b55ed1e9da6a3f06b2d 0000000000000000000000000000000000000000 Abdul Ghaffar <hamza.badar@introtechsolutions.com> 1756748330 +0500	Branch: renamed refs/heads/master to refs/heads/main
-0000000000000000000000000000000000000000 a4659bf7c139513145823b55ed1e9da6a3f06b2d Abdul Ghaffar <hamza.badar@introtechsolutions.com> 1756748330 +0500	Branch: renamed refs/heads/master to refs/heads/main
-a4659bf7c139513145823b55ed1e9da6a3f06b2d aaf6379ce3ef7bee7685984c2ea794c511c26829 Abdul Ghaffar <hamza.badar@introtechsolutions.com> 1757519573 +0500	commit: updated feature
-aaf6379ce3ef7bee7685984c2ea794c511c26829 8741e290cdb9f0b49d8e07882c0160015d8e00f7 Abdul Ghaffar <hamza.badar@introtechsolutions.com> 1757783818 +0500	commit: Initial commit for Angular + Firebase project
-8741e290cdb9f0b49d8e07882c0160015d8e00f7 0000000000000000000000000000000000000000 Abdul Ghaffar <hamza.badar@introtechsolutions.com> 1757783831 +0500	Branch: renamed refs/heads/main to refs/heads/main
-8741e290cdb9f0b49d8e07882c0160015d8e00f7 8741e290cdb9f0b49d8e07882c0160015d8e00f7 Abdul Ghaffar <hamza.badar@introtechsolutions.com> 1757783831 +0500	Branch: renamed refs/heads/main to refs/heads/main
