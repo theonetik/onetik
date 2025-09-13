@@ -1,0 +1,54 @@
+<div class="country-tab-container">
+  <mat-form-field appearance="outline" class="search-field" style="margin-left: 7%;">
+    <mat-label>Search Country</mat-label>
+    <input matInput type="text" [(ngModel)]="searchText" [ngModelOptions]="{ standalone: true }"
+      placeholder="Type country name...">
+  </mat-form-field>
+
+  <div class="tab-navigation">
+    <button mat-icon-button (click)="previousTab()" [disabled]="selectedIndex === 0">◀</button>
+
+    <mat-tab-group [(selectedIndex)]="selectedIndex" (selectedTabChange)="onCountryTabChange($event)">
+      <mat-tab *ngFor="let country of filteredCountries(); let i = index" [label]="country.name">
+        <ng-template matTabContent>
+          <div class="add-card-container" *ngIf="isSuperUser">
+            <button mat-stroked-button color="primary" (click)="addCard(country.code, country.name)">➕ Add Card</button>
+          </div>
+
+          <div class="tab-content">
+            <div class="cards-grid">
+              <ng-container *ngFor="let card of getPaginatedCards(country.code)">
+                <app-customcard [title]="card.title" [description]="card.description" [countryCode]="card.countryCode"  [moduleType]="moduleType"
+                  [cardId]="card.id" [isSuperUser]="isSuperUser" (openLink)="onLinkClick($event)"
+                  [websiteLink]="card.websiteLink" [aboutWebsiteLink]="card.aboutWebsiteLink"
+                  [aboutCountryLink]="card.aboutCountryLink" [youtubeLink]="card.youtubeLink"
+                  (delete)="deleteCard(country.code, card.id)">
+                </app-customcard>
+              </ng-container>
+            </div>
+            <ng-template #noData>
+              <div class="empty-state">
+                <mat-icon>info</mat-icon>
+                <div class="empty-title">No data available</div>
+                <div class="empty-subtitle">Please add some cards.</div>
+              </div>
+            </ng-template>
+            <div class="pagination-container">
+              <mat-paginator [length]="getTotalCards(country.code)" [pageSize]="pageSize" [pageIndex]="pageIndex"
+                [pageSizeOptions]="[3, 6, 12]" (page)="onPageChange($event)" showFirstLastButtons>
+              </mat-paginator>
+            </div>
+          </div>
+        </ng-template>
+      </mat-tab>
+    </mat-tab-group>
+
+    <button mat-icon-button (click)="nextTab()" [disabled]="selectedIndex >= filteredCountries().length - 1">▶</button>
+  </div>
+</div>
+<div *ngIf="iframeUrl !== 'about:blank'" class="iframe-wrapper" #iframeContainer>
+  <button class="close-button" (click)="closeIframe()">×</button>
+  <iframe [src]="iframeUrl | safeUrl" width="100%" height="600px" frameborder="0"
+    style="border: 1px solid #ddd; border-radius: 8px;">
+  </iframe>
+</div>

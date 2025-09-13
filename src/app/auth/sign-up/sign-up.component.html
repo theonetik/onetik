@@ -1,0 +1,25 @@
+<div class="signup-container">
+  <h2>Create Account</h2>
+
+  <form (ngSubmit)="signup()" class="signup-form">
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput [(ngModel)]="email" style="color:black" name="email" type="email" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input matInput [(ngModel)]="password" style="color:black" name="password" [type]="hidePassword ? 'password' : 'text'" required />
+      <button mat-icon-button matSuffix type="button" (click)="hidePassword = !hidePassword">
+        <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" class="signup-btn" type="submit">
+      Sign Up
+    </button>
+  </form>
+
+<div class="links">
+  <a (click)="goToLogin()">Already have an account? Login</a>
+</div>

@@ -1,0 +1,44 @@
+
+<h2 >{{ data?.title ? 'Edit Card' : 'Create Card' }}</h2>
+<div mat-dialog-content>
+  <mat-form-field appearance="fill" class="w-full mb-4" style="width: 100%;">
+    <mat-label>Title</mat-label>
+    <input matInput [(ngModel)]="title" />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="w-full mb-4">
+    <mat-label>Description</mat-label>
+    <textarea matInput rows="3" [(ngModel)]="description"></textarea>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="w-full mb-4">
+    <mat-label>Country Code</mat-label>
+    <input matInput [(ngModel)]="countryCode" />
+  </mat-form-field>
+</div>
+<mat-form-field appearance="fill" class="w-full mb-4">
+  <mat-label>Website Link</mat-label>
+  <input matInput [(ngModel)]="websiteLink" />
+</mat-form-field>
+
+<mat-form-field appearance="fill" class="w-full mb-4">
+  <mat-label>About Website Link</mat-label>
+  <input matInput [(ngModel)]="aboutWebsiteLink" />
+</mat-form-field>
+
+<mat-form-field appearance="fill" class="w-full mb-4">
+  <mat-label>About Country Link</mat-label>
+  <input matInput [(ngModel)]="aboutCountryLink" />
+</mat-form-field>
+
+<mat-form-field appearance="fill" class="w-full mb-4">
+  <mat-label>YouTube Link</mat-label>
+  <input matInput [(ngModel)]="youtubeLink" />
+</mat-form-field>
+
+<div mat-dialog-actions class="justify-end">
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-raised-button color="primary" (click)="onSubmit()">Save</button>
+</div>
+
+

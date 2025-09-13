@@ -1,0 +1,344 @@
+// Variables - Dark Mode
+$primary-color: #3498db
+$secondary-color: #212121
+$accent-color: #424242
+$text-light: #e0e0e0
+$text-dark: #ffffff
+$background-light: #212121
+$hover-color: rgba(255, 255, 255, 0.08)
+$active-hover: rgba(52, 152, 219, 0.2)
+
+// Mixins
+@mixin hide-scrollbar
+  scrollbar-width: none
+  -ms-overflow-style: none
+  &::-webkit-scrollbar
+    display: none
+
+@mixin card-hover-effect
+  transition: all 0.3s ease
+  &:hover
+    background-color: $hover-color
+    transform: translateX(2px)
+
+// Base container
+.sidenav-container
+  height: 100vh
+  width: 100vw
+  position: relative
+  overflow: hidden
+  background-color: $background-light
+  color: $text-light
+
+// Main Sidebar
+.main-sidebar
+  width: 90px !important
+  min-width: 90px !important
+  max-width: 90px !important
+  height: 100vh
+  background-color: $secondary-color
+  border-right: 1px solid $accent-color
+  position: fixed !important
+  left: 0
+  top: 0
+  z-index: 1000
+  @include hide-scrollbar
+
+  .sidebar-content
+    padding: 10px 5px
+    height: 100%
+    overflow-y: auto
+    @include hide-scrollbar
+
+    .menu-card
+      margin-bottom: 10px
+      padding: 15px 5px
+      cursor: pointer
+      background-color: transparent
+      border: none
+      box-shadow: none !important
+      border-radius: 8px
+      display: flex
+      flex-direction: column
+      align-items: center
+      text-align: center
+      @include card-hover-effect
+
+      &.active
+        background-color: $primary-color
+        .menu-label
+          color: white
+        .menu-icon
+          color: white
+
+      .mat-icon-container
+        margin-bottom: 5px
+
+      .menu-icon
+        color: $text-light
+        font-size: 24px
+        transition: color 0.3s ease
+
+      .menu-label
+        font-size: 10px
+        color: $text-light
+        text-align: center
+        line-height: 1.2
+        font-weight: 500
+        transition: color 0.3s ease
+
+// Subsection Sidebar
+.subsection-sidebar
+  width: 280px !important
+  min-width: 280px !important
+  max-width: 280px !important
+  background-color: $background-light
+  border-right: 1px solid $accent-color
+  height: 100vh
+  position: fixed !important
+  left: 90px
+  top: 0
+  z-index: 999
+  @include hide-scrollbar
+
+  .subsection-header
+    display: flex
+    align-items: center
+    padding: 20px 16px
+    background-color: $secondary-color
+    color: $text-light
+
+    .header-icon
+      margin-right: 12px
+      font-size: 24px
+
+    .header-title
+      flex: 1
+      margin: 0
+      font-size: 18px
+      font-weight: 500
+
+    .close-button
+      color: $text-light
+      &:hover
+        background-color: rgba(255, 255, 255, 0.1)
+
+  .subsection-content
+    padding: 10px 0
+    height: calc(100vh - 80px)
+    overflow-y: auto
+    @include hide-scrollbar
+
+    .mat-nav-list
+      padding: 0
+
+      .subsection-item
+        margin-bottom: 2px
+        border-radius: 0 25px 25px 0
+        margin-right: 10px
+        transition: all 0.3s ease
+        cursor: pointer
+
+        &:hover
+          background-color: $active-hover
+          .mat-icon
+            color: $primary-color
+
+        &.active-subsection
+          background-color: $primary-color
+          color: white
+          .mat-icon
+            color: white
+
+        .mat-icon
+          color: $text-light
+          margin-right: 12px
+          transition: color 0.3s ease
+
+        span[matListItemTitle]
+          font-weight: 500
+          font-size: 14px
+
+  .logout-container
+    padding: 20px 16px
+    position: absolute
+    bottom: 0
+    left: 0
+    right: 0
+    background-color: $background-light
+    border-top: 1px solid $accent-color
+
+    .logout-button
+      width: 100%
+      display: flex
+      align-items: center
+      justify-content: center
+      gap: 8px
+
+// Main Content
+.main-content
+  margin-left: 90px !important
+  width: calc(100vw - 90px)
+  background-color: $background-light
+  overflow-y: auto
+  overflow-x: hidden
+  position: relative
+  min-height: 100vh
+  display: flex
+  flex-direction: column
+  scroll-behavior: smooth
+  color: $text-light
+
+  .content-padding
+    padding: 20px
+    flex: 1 1 auto
+    background-color: $background-light
+
+// Mobile Header
+.mobile-header
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+  z-index: 1002
+  background-color: $secondary-color
+  color: $text-light
+  height: 56px
+
+  .mobile-menu-button,
+  .mobile-logout-button
+    color: $text-light
+
+  .mobile-title
+    font-size: 18px
+    font-weight: 500
+
+  .spacer
+    flex: 1
+
+// Mobile Sidebar Adjustments
+.mobile-sidebar
+  width: 280px !important
+  min-width: 280px !important
+  max-width: 280px !important
+  top: 56px !important
+  height: calc(100vh - 56px) !important
+  background-color: $secondary-color
+
+  .mobile-user-info
+    padding: 16px
+    display: flex
+    align-items: center
+    background-color: rgba(255, 255, 255, 0.1)
+
+    .user-avatar
+      margin-right: 12px
+      .mat-icon
+        font-size: 32px
+        color: $text-light
+
+    .user-details
+      display: flex
+      flex-direction: column
+
+      .user-email
+        color: $text-light
+        font-size: 14px
+        font-weight: 500
+
+      .user-role
+        color: $text-light
+        font-size: 12px
+        text-transform: capitalize
+
+  .mobile-menu-card
+    padding: 16px
+    margin-bottom: 8px
+    flex-direction: row
+    align-items: center
+    text-align: left
+
+    .mat-icon-container
+      margin-bottom: 0
+      margin-right: 16px
+
+    .mobile-label
+      font-size: 16px !important
+      color: $text-light
+
+// Mobile Content
+.mobile-content
+  margin-left: 0 !important
+  margin-top: 56px !important
+  width: 100vw !important
+  min-height: calc(100vh - 56px) !important
+  overflow-y: auto
+  background-color: $background-light
+  color: $text-light
+
+  .mobile-padding
+    padding: 16px
+
+// Tablet Content
+.tablet-content
+  margin-left: 70px !important
+  width: calc(100vw - 70px) !important
+  background-color: $background-light
+  color: $text-light
+
+// Iframe Container
+.iframe-container
+  position: fixed
+  top: 0
+  left: 90px
+  width: calc(100vw - 90px)
+  height: 100vh
+  z-index: 1001
+  background-color: $background-light
+  color: $text-light
+
+  .iframe-header
+    height: 48px
+    background-color: $secondary-color
+    border-bottom: 1px solid $accent-color
+    display: flex
+    align-items: center
+    padding: 0 16px
+
+    .iframe-close-button,
+    .iframe-external-button
+      color: $text-light
+
+    .iframe-url
+      flex: 1
+      margin: 0 16px
+      font-size: 14px
+      color: $text-light
+      overflow: hidden
+      text-overflow: ellipsis
+      white-space: nowrap
+
+  .external-iframe
+    width: 100%
+    height: calc(100% - 48px) !important
+    border: none
+
+// Mobile Backdrop
+.mobile-backdrop
+  position: fixed
+  top: 0
+  left: 0
+  width: 100vw
+  height: 100vh
+  background-color: rgba(0, 0, 0, 0.5)
+  z-index: 998
+
+// Loading Indicator
+.iframe-loading
+  padding: 20px
+  text-align: center
+
+  p
+    margin-top: 16px
+    color: $text-light
+    font-size: 14px
