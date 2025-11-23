@@ -153,7 +153,6 @@ export class CountryList {
   { code: "ID", name: "Indonesia" },
   { code: "IR", name: "Iran" },
   { code: "IQ", name: "Iraq" },
-  { code: "IL", name: "Israel" },
   { code: "JP", name: "Japan" },
   { code: "JO", name: "Jordan" },
   { code: "KZ", name: "Kazakhstan" },

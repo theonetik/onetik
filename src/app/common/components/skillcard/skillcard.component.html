@@ -1,0 +1,56 @@
+<mat-card 
+  class="custom-card"
+  [matTooltip]="shouldShowTooltip ? fullDescription : ''"
+  matTooltipClass="custom-tooltip"
+  matTooltipPosition="above">
+
+  <!-- Header -->
+  <div class="card-header">
+    <mat-card-title class="card-title">
+      {{ card.title }}
+    </mat-card-title>
+  </div>
+
+  <!-- Content -->
+  <mat-card-content class="card-content">
+    <p class="description" [class.truncated]="isDescriptionTruncated">
+      {{ displayDescription }}
+    </p>
+  </mat-card-content>
+
+  <!-- Action Buttons -->
+  <div class="action-buttons">
+    <!-- Primary Actions -->
+    <div class="primary-actions">
+      <button mat-raised-button color="primary" *ngIf="card.websiteLink" (click)="openInFrame(card.websiteLink)" matTooltip="Visit the main website">
+        <mat-icon>language</mat-icon>
+        <span class="btn-text">Website</span>
+      </button>
+      <button mat-raised-button color="accent" *ngIf="card.youtubeLink" (click)="openInFrame(card.youtubeLink)" matTooltip="Watch on YouTube">
+        <mat-icon>play_circle</mat-icon>
+        <span class="btn-text">YouTube</span>
+      </button>
+    </div>
+
+    <!-- Secondary Actions -->
+
+
+    <!-- Admin Actions -->
+    <div class="admin-actions" *ngIf="isSuperUser">
+      <div class="admin-divider"></div>
+      <button mat-flat-button color="warn" class="update-btn" (click)="openFormDialog()" matTooltip="Update card information">
+        <mat-icon>edit</mat-icon>
+        <span class="btn-text">Update</span>
+      </button>
+      <button mat-flat-button color="primary" class="delete-btn" (click)="onDelete()" matTooltip="Delete this card">
+        <mat-icon>delete</mat-icon>
+        <span class="btn-text">Delete</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Status Indicator -->
+  <div class="status-indicator" *ngIf="isSuperUser">
+    <mat-icon class="status-icon">admin_panel_settings</mat-icon>
+  </div>
+</mat-card>

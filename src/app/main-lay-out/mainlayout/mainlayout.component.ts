@@ -1,5 +1,3 @@
-// mainlayout.component.ts - Updated with responsive features
-
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, HostListener, inject, signal, ViewChild, OnDestroy } from '@angular/core';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
@@ -111,15 +109,12 @@ export class MainlayoutComponent implements OnDestroy {
           this.currentUserRole = 'superuser';
         }
 
-        console.log('Logged In User:', this.currentUserEmail);
-        console.log('Role:', this.currentUserRole);
       });
       
       this.subscriptions.push(superUserSubscription);
     } else {
       this.currentUserRole = 'guest';
       this.isSuperUser = false;
-      console.log('No user logged in');
     }
   }
 
@@ -238,7 +233,39 @@ export class MainlayoutComponent implements OnDestroy {
         }
       ]
     },
-  
+  {
+  id: 'skillverse',
+  icon: 'school', // main module icon
+  name: 'SkillVerse',
+  subsections: [
+    { 
+      id: 'IT-Skills', 
+      name: 'IT Skills', 
+      route: 'skillverse/it-skill', 
+      icon: 'computer' // IT skills icon
+    },
+    { 
+      id: 'digital-skills', 
+      name: 'Digital Skills', 
+      route: 'skillverse/digital-skill', 
+      icon: 'devices_other' // digital skills icon
+    },
+    { 
+      id: 'ecommerce', 
+      name: 'E-Commerce Skills', 
+      route: 'skillverse/ecommerce-skill', 
+      icon: 'shopping_cart' // e-commerce icon
+    },
+
+     { 
+      id: 'AIprompt', 
+      name: 'AI Prompt', 
+      route: 'skillverse/AI-prompt', 
+      icon: 'auto_awesome' 
+    },
+  ]
+},
+
     {
       id: 'Admin',
       icon: 'admin_panel_settings',

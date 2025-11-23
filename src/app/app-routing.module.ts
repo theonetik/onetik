@@ -7,6 +7,11 @@ import { RecruitmentagencieComponent } from './modules/GeoPortal/recruitmentagen
 import { SuperuserlistComponent } from './modules/Admin/superuserlist/superuserlist.component';
 import { SuperuserformComponent } from './modules/Admin/superuserform/superuserform.component';
 import { SuperUserGuard } from './common/guards/super-user.guard';
+import { ItskillComponent } from './modules/SkillVerse/itskill/itskill.component';
+import { Digitalskill } from './common/classes/skillverse';
+import { DigtalskillComponent } from './modules/SkillVerse/digtalskill/digtalskill.component';
+import { EcommerceskillComponent } from './modules/SkillVerse/ecommerceskill/ecommerceskill.component';
+import { AIPromptComponent } from './modules/SkillVerse/aiprompt/aiprompt.component';
 export const routes: Routes = [
   { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
 
@@ -32,6 +37,22 @@ export const routes: Routes = [
   {
     path: 'dashboard/recruitment-agencie',
     component: RecruitmentagencieComponent,
+  },
+    {
+    path: 'skillverse/it-skill',
+    component: ItskillComponent,
+  },
+   {
+    path: 'skillverse/digital-skill',
+    component: DigtalskillComponent,
+  },
+   {
+    path: 'skillverse/ecommerce-skill',
+    component: EcommerceskillComponent,
+  },
+  {
+    path: 'skillverse/AI-prompt',
+    component: AIPromptComponent,
   },
 
   {

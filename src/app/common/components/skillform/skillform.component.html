@@ -1,0 +1,35 @@
+<h2>{{ data.card?.id ? 'Edit Skill Card' : 'Add Skill Card' }}</h2>
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-row">
+    <mat-form-field appearance="fill" class="form-field-full">
+        <mat-label>Title</mat-label>
+        <input matInput [(ngModel)]="card.title" name="title" required />
+      </mat-form-field>
+      </div>
+
+       <div class="form-row">
+    <mat-form-field appearance="fill" class="form-field-full">
+        <mat-label>Description</mat-label>
+        <textarea matInput [(ngModel)]="card.description" name="description" rows="3"></textarea>
+      </mat-form-field>
+      </div>
+
+    <div class="form-row">
+    <mat-form-field appearance="fill" class="form-field-full">
+        <mat-label>Website Link</mat-label>
+        <input matInput [(ngModel)]="card.websiteLink" name="websiteLink" />
+      </mat-form-field>
+      </div>
+
+      <div class="form-row">
+    <mat-form-field appearance="fill" class="form-field-full">
+        <mat-label>YouTube Link</mat-label>
+        <input matInput [(ngModel)]="card.youtubeLink" name="youtubeLink" />
+      </mat-form-field>
+      </div>
+
+      <div class="actions">
+        <button mat-button type="button" (click)="onCancel()">Cancel</button>
+        <button mat-raised-button color="primary" type="submit">Save</button>
+      </div>
+    </form>
