@@ -13,7 +13,7 @@
 
   <!-- Content -->
   <mat-card-content class="card-content">
-    <p class="description" [class.truncated]="isDescriptionTruncated">
+    <p style="color: black;" [class.truncated]="isDescriptionTruncated">
       {{ displayDescription }}
     </p>
   </mat-card-content>
@@ -22,7 +22,7 @@
   <div class="action-buttons">
     <!-- Primary Actions -->
     <div class="primary-actions">
-      <button mat-raised-button color="primary" *ngIf="card.websiteLink" (click)="openInFrame(card.websiteLink)" matTooltip="Visit the main website">
+      <button mat-raised-button color="primary" *ngIf="card.websiteLink" (click)="openInWindow(card.websiteLink)" matTooltip="Visit the main website">
         <mat-icon>language</mat-icon>
         <span class="btn-text">Website</span>
       </button>

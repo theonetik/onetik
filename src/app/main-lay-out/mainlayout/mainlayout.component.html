@@ -36,7 +36,7 @@
         <ng-container *ngFor="let menu of sideMenu">
           <mat-card *ngIf="menu.id !== 'Admin' || isSuperUser" class="menu-card"
             [class.active]="selectedModuleId === menu.id" [class.mobile-menu-card]="isMobile"
-            (click)="toggleSideBar(menu.id, sideNavBar.opened)" matRipple [matTooltip]="!isMobile ? menu.name : ''"
+            (click)="toggleSideBar(menu.id, sideNavBar?.opened ?? false)" matRipple [matTooltip]="!isMobile ? menu.name : ''"
             [matTooltipDisabled]="isMobile" matTooltipPosition="right">
 
             <div class="mat-icon-container">
@@ -63,26 +63,26 @@
 
     <mat-divider></mat-divider>
 
-    <div class="subsection-content" *ngIf="getSelectedModule()?.subsections">
-      <mat-nav-list class="subsection-nav-list">
-        <mat-list-item *ngFor="let subsection of getSelectedModule()?.subsections" class="subsection-item"
-          [routerLink]="subsection.route" routerLinkActive="active-subsection" (click)="sideNavBar.close()">
+  <div class="subsection-content" *ngIf="getSelectedModule()?.subsections">
+  <mat-nav-list class="subsection-nav-list">
+    <mat-list-item *ngFor="let subsection of getSelectedModule()?.subsections" class="subsection-item"
+      [routerLink]="subsection.route" routerLinkActive="active-subsection" (click)="sideNavBar.close()">
 
-          <mat-icon matListItemIcon *ngIf="subsection.icon">
-            {{ subsection.icon }}
-          </mat-icon>
-          <span matListItemTitle>{{ subsection.name }}</span>
-        </mat-list-item>
-      </mat-nav-list>
+      <mat-icon matListItemIcon *ngIf="subsection.icon">
+        {{ subsection.icon }}
+      </mat-icon>
+      <span matListItemTitle>{{ subsection.name }}</span>
+    </mat-list-item>
+  </mat-nav-list>
 
-      <!-- Logout Section -->
-      <div class="logout-container">
-        <button mat-raised-button color="warn" class="logout-button" (click)="logout()" *ngIf="!isMobile">
-          <mat-icon>logout</mat-icon>
-          Logout
-        </button>
-      </div>
-    </div>
+  <!-- Logout Section - Only show in Login sidebar -->
+  <div class="logout-container" *ngIf="selectedModuleId === 'login'">
+    <button mat-raised-button color="warn" class="logout-button" (click)="logout()" *ngIf="!isMobile">
+      <mat-icon>logout</mat-icon>
+      Logout
+    </button>
+  </div>
+</div>
   </mat-sidenav>
 
   <!-- Main Content -->

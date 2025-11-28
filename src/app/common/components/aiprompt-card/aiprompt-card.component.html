@@ -1,0 +1,38 @@
+ <div class="add-card-container" *ngIf="isSuperUser">
+            <button mat-stroked-button color="primary" (click)="addPrompt()">➕ Add Card</button>
+          </div>
+
+<div class="grid">
+    <mat-card class="custom-card" *ngFor="let p of displayedPrompts">
+
+        <!-- CARD HEADER -->
+        <mat-card-header class="card-header">
+            <mat-card-title style="color: black;">{{ p.title }}</mat-card-title>
+        </mat-card-header>
+
+        <!-- CARD CONTENT -->
+        <mat-card-content class="card-content">
+            <p class="description-text" [matTooltip]="p.description" matTooltipPosition="above">
+                {{ getShortText(p.description, 100) }}
+            </p>
+        </mat-card-content>
+
+        <!-- CARD ACTIONS -->
+        <mat-card-actions class="action-buttons">
+            <button mat-button style="color: green;" (click)="copy(p.description)">Copy</button>
+            <button mat-button color="accent" *ngIf="isSuperUser" (click)="updatePrompt(p)">Update</button>
+            <button mat-button color="warn" *ngIf="isSuperUser" (click)="deletePrompt(p.id!)">Delete</button>
+        </mat-card-actions>
+
+        <!-- STATUS ICON (SuperUser) -->
+        <div class="status-indicator" *ngIf="isSuperUser">
+            <mat-icon class="status-icon">admin_panel_settings</mat-icon>
+        </div>
+    </mat-card>
+</div>
+
+<div class="pagination-container" style="margin-top: 16px;">
+    <mat-paginator [length]="prompts.length" [pageSize]="pageSize" [pageIndex]="pageIndex"
+        [pageSizeOptions]="[3, 6, 12]" (page)="onPageChange($event)" showFirstLastButtons>
+    </mat-paginator>
+</div>

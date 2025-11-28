@@ -2,34 +2,63 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>TheOneTik | Global Opportunities, Visas & Education</title>
+  <title>TheOneTik | Global Opportunities & Skillverse</title>
   <base href="/">
 
   <!-- Mobile Friendly -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- SEO Meta Tags -->
-  <meta name="description" content="TheOneTik is a global portal for world visas, international opportunities, universities, and recruitment agencies. Explore worldwide resources for jobs, education, and migration.">
-  <meta name="keywords" content="TheOneTik, world visa, world opportunities, study abroad, universities, recruitment, jobs, migration, global education, work overseas, international jobs">
+  <meta name="description" content="TheOneTik is a global portal for visas, education, jobs, and opportunities worldwide. It also hosts Skillverse, offering IT skills, digital skills, e-commerce expertise, and AI prompt resources for professional growth.">
+  <meta name="keywords" content="TheOneTik, global opportunities, visas, education, study abroad, recruitment, jobs, migration, Skillverse, IT skills, Digital skills, E-commerce skills, AI prompts, professional learning">
   <meta name="author" content="TheOneTik">
 
   <!-- Open Graph for Social Media -->
-  <meta property="og:title" content="TheOneTik | Global Opportunities, Visas & Education">
-  <meta property="og:description" content="Find global opportunities for visas, jobs, universities, and recruitment agencies with TheOneTik.">
+  <meta property="og:title" content="TheOneTik | Global Opportunities, Visas, Education & Skillverse">
+  <meta property="og:description" content="Explore TheOneTik for worldwide visas, education, jobs, and recruitment opportunities, along with Skillverse to learn IT, digital marketing, e-commerce skills, and AI prompts.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://theonetik.com/">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="TheOneTik | Global Opportunities, Visas & Education">
-  <meta name="twitter:description" content="Explore world visas, opportunities, universities, and recruitment agencies at TheOneTik.">
+  <meta name="twitter:title" content="TheOneTik | Global Opportunities, Visas, Education & Skillverse">
+  <meta name="twitter:description" content="Discover TheOneTik for global opportunities, visas, education, and Skillverse to boost your IT, digital, e-commerce, and AI skills.">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
 
   <!-- Fonts & Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- JSON-LD Structured Data for Skills & Portal -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "TheOneTik",
+    "url": "https://theonetik.com/",
+    "description": "Global portal for visas, education, jobs, and Skillverse for IT, digital, e-commerce skills and AI prompts.",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://theonetik.com/search?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    },
+    "about": [
+      {
+        "@type": "EducationalOccupationalProgram",
+        "name": "Skillverse",
+        "educationalProgramMode": "Online",
+        "course": [
+          {"name": "IT Skills"},
+          {"name": "Digital Skills"},
+          {"name": "E-commerce Skills"},
+          {"name": "AI Prompts"}
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body class="mat-typography">
   <app-root></app-root>

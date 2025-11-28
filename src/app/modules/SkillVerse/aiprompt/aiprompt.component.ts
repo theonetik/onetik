@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
-import { SkillverseComponent } from 'src/app/common/components/skillverse/skillverse.component';
+import { AIPromptCardComponent } from 'src/app/common/components/aiprompt-card/aiprompt-card.component';
+
 
 @Component({
   selector: 'app-aiprompt',
   standalone: true,
-  imports: [SkillverseComponent],
+  imports: [AIPromptCardComponent],
   templateUrl: './aiprompt.component.html',
   styleUrl: './aiprompt.component.sass'
 })
 export class AIPromptComponent {
 
 }
+

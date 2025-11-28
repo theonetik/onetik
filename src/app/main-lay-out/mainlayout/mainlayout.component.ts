@@ -59,8 +59,8 @@ export class MainlayoutComponent implements OnDestroy {
   rawLink: string | null = null;
   currentLink: SafeResourceUrl | null = null;
   
-  @ViewChild('sideNav') sideNav!: MatSidenav;
-  @ViewChild('sideNavBar') sideNavBar!: MatSidenav;
+  @ViewChild('sideNav') sideNav?: MatSidenav;
+  @ViewChild('sideNavBar') sideNavBar?: MatSidenav;
   
   sidenavIsOpened = true;
   disableSideNavClose = true;
@@ -150,7 +150,7 @@ export class MainlayoutComponent implements OnDestroy {
       this.sidenavIsOpened = false;
       this.disableSideNavClose = false;
       // Close subsection sidebar on mobile by default
-      if (this.sideNavBar && this.sideNavBar.opened) {
+      if (this.sideNavBar && this.sideNavBar?.opened) {
         this.sideNavBar.close();
       }
     } else if (this.isTablet) {
@@ -167,8 +167,8 @@ export class MainlayoutComponent implements OnDestroy {
     const width = event.target.innerWidth;
     
     // Auto-close subsection sidebar on small screens when resizing
-    if (width <= 768 && this.sideNavBar && this.sideNavBar.opened) {
-      this.sideNavBar.close();
+    if (width <= 768 && this.sideNavBar && this.sideNavBar?.opened) {
+      this.sideNavBar?.close();
     }
     
     // Update layout flags
@@ -181,8 +181,8 @@ export class MainlayoutComponent implements OnDestroy {
   onOrientationChange(event: any) {
     // Handle orientation changes on mobile devices
     setTimeout(() => {
-      if (this.isMobile && this.sideNavBar && this.sideNavBar.opened) {
-        this.sideNavBar.close();
+      if (this.isMobile && this.sideNavBar && this.sideNavBar?.opened) {
+        this.sideNavBar?.close();
       }
     }, 100);
   }
@@ -284,20 +284,20 @@ export class MainlayoutComponent implements OnDestroy {
   toggleSideBar(moduleId: string, isOpened: boolean): void {
     if (this.selectedModuleId !== moduleId) {
       this.selectedModuleId = moduleId;
-      this.sideNavBar.open();
+      this.sideNavBar?.open();
     } else {
-      this.sideNavBar.toggle();
+      this.sideNavBar?.toggle();
     }
 
     // On mobile, ensure main sidebar closes when subsection opens
-    if (this.isMobile && this.sideNav && this.sideNav.opened) {
-      this.sideNav.close();
+    if (this.isMobile && this.sideNav && this.sideNav?.opened) {
+      this.sideNav?.close();
     }
   }
 
   sideNavClosed(isOpened: boolean): void {
     if (isOpened) {
-      this.sideNavBar.close();
+      this.sideNavBar?.close();
     }
   }
 

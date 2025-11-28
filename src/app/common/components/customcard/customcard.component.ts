@@ -68,11 +68,6 @@ export class CustomcardComponent implements OnInit, AfterViewInit {
   async ngOnInit() {
     const role = await this.authService.getCurrentUserRole();
     this.isSuperUser = role === 'superuser';
-    
-    console.log('CustomCard detected role:', role);
-    console.log('CustomCard - isSuperUser input:', this.isSuperUser);
-    console.log('CustomCard - cardId:', this.cardId);
-
     this.processDescription();
   }
 

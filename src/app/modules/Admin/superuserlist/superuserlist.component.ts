@@ -25,7 +25,7 @@ import { User } from 'src/app/common/interface/user';
   styleUrl: './superuserlist.component.sass'
 })
 export class SuperuserlistComponent implements OnInit, AfterViewInit {
-  displayedColumns: string[] = ['id', 'name', 'email', 'role', 'password','actions'];
+  displayedColumns: string[] = ['name', 'email', 'role','actions'];
   dataSource = new MatTableDataSource<User>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -77,7 +77,6 @@ export class SuperuserlistComponent implements OnInit, AfterViewInit {
 
 deleteUser(user: User) {
   if (!user.id) {
-    console.error('User ID is missing.');
     return;
   }
 

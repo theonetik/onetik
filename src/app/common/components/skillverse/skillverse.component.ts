@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { Skillcategory } from '../../interface/skillcategory';
 import { Digitalskill, EcommerceSkills, TechSkill } from '../../classes/skillverse';
 import { CommonModule } from '@angular/common';
@@ -11,6 +11,9 @@ import { SkillformComponent } from '../skillform/skillform.component';
 import { SkillverseService } from '../../services/skillverse.service';
 import { AuthService } from 'src/app/auth/auth.service';
 import { SkillCard } from '../../interface/skill-card';
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { SafeUrlPipe } from '../../pipe/safe-url.pipe';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-skillverse',
@@ -21,36 +24,62 @@ import { SkillCard } from '../../interface/skill-card';
     MatCardModule,
     MatButtonModule,
     SkillcardComponent,
-    MatDialogModule
+    MatDialogModule,
+    MatPaginatorModule,
+    SafeUrlPipe
   ],
   templateUrl: './skillverse.component.html',
   styleUrl: './skillverse.component.sass'
 })
 export class SkillverseComponent {
+
+  @ViewChild('iframeContainer') iframeContainer?: ElementRef;
+  @Output() iframeLinkSelected = new EventEmitter<string>();
+  private subscription = new Subscription();
+  iframeUrl: string = 'about:blank';
   @Input() type: 'tech' | 'digital' | 'ecommerce' = 'tech';
 
   categories: Skillcategory[] = [];
   selectedCategoryIndex = 0;
   selectedSubcategoryIndex = 0;
   selectedItem: string | null = null;
+
   cards: SkillCard[] = [];
+  paginatedCards: SkillCard[] = [];
+
+  pageSize: number = 3;
+  pageIndex: number = 0;
+
   isSuperUser: boolean = false;
+
+  selectedIframeUrl: string | null = null;
 
   constructor(
     private skillsVerseService: SkillverseService,
     private dialog: MatDialog,
-    private authService: AuthService
-  ) {}
-  
+    private authService: AuthService,
+    private cdr: ChangeDetectorRef // Add ChangeDetectorRef
+  ) { }
 
   async ngOnInit() {
     this.isSuperUser = (await this.authService.getCurrentUserRole()) === 'superuser';
-
+    
     if (this.type === 'tech') this.categories = TechSkill;
     if (this.type === 'digital') this.categories = Digitalskill;
     if (this.type === 'ecommerce') this.categories = EcommerceSkills;
 
-    // Select first category/subcategory/item by default
+    // SOLUTION 1: Use setTimeout to defer auto-selection
+    setTimeout(() => {
+      this.autoSelectFirstItem();
+    });
+    
+    // OR SOLUTION 2: Manually trigger change detection
+    // this.autoSelectFirstItem();
+    // this.cdr.detectChanges();
+  }
+
+  // Separate method for auto-selection
+  private autoSelectFirstItem() {
     if (this.categories.length > 0) {
       const firstCat = this.categories[0];
       if (firstCat.subcategories.length > 0) {
@@ -64,26 +93,20 @@ export class SkillverseComponent {
 
   categoryChanged(index: number) {
     this.selectedCategoryIndex = index;
-    this.selectedSubcategoryIndex = 0;
-    this.selectedItem = null;
-    this.cards = [];
-
     const cat = this.categories[index];
-    if (cat.subcategories.length > 0 && cat.subcategories[0].items.length > 0) {
-      this.selectSubItem(cat.subcategories[0].items[0]);
-    }
+
+    this.selectedSubcategoryIndex = 0;
+    this.selectedItem = cat.subcategories[0].items[0];
+
+    this.loadCards();
   }
 
   subcategoryChanged(index: number) {
     this.selectedSubcategoryIndex = index;
-    this.selectedItem = null;
-    this.cards = [];
+    const sub = this.categories[this.selectedCategoryIndex].subcategories[index];
 
-    const cat = this.categories[this.selectedCategoryIndex];
-    const sub = cat.subcategories[index];
-    if (sub.items.length > 0) {
-      this.selectSubItem(sub.items[0]);
-    }
+    this.selectedItem = sub.items[0];
+    this.loadCards();
   }
 
   selectSubItem(item: string) {
@@ -96,46 +119,78 @@ export class SkillverseComponent {
 
     this.skillsVerseService.getCardsBySubItem(this.selectedItem)
       .subscribe(cards => {
-        this.cards = cards; // Only cards for this subItem
+        this.cards = cards;
+        this.updatePagination();
       });
   }
 
+  updatePagination() {
+    const start = this.pageIndex * this.pageSize;
+    const end = start + this.pageSize;
+    this.paginatedCards = this.cards.slice(start, end);
+  }
+
+  onPageChange(event: PageEvent) {
+    this.pageIndex = event.pageIndex;
+    this.pageSize = event.pageSize;
+    this.updatePagination();
+  }
+
   addCard(item: string) {
-    if (!item || !this.isSuperUser) return;
-
+    if (!this.isSuperUser) return;
     const dialogRef = this.dialog.open(SkillformComponent, { width: '500px', data: {} });
-
     dialogRef.afterClosed().subscribe(result => {
       if (result?.card) {
-        result.card.subItem = item; // Save the correct subItem
-
-        this.skillsVerseService.addCard(result.card).then(() => {
-          this.selectSubItem(item); // reload only this item
-        });
+        result.card.subItem = item;
+        this.skillsVerseService.addCard(result.card).then(() => this.loadCards());
       }
     });
   }
 
   editCard(card: SkillCard) {
     if (!this.isSuperUser) return;
-
     const dialogRef = this.dialog.open(SkillformComponent, { width: '500px', data: { card } });
-
     dialogRef.afterClosed().subscribe(result => {
       if (result?.card) {
-        const updatedCard: SkillCard = { ...result.card, subItem: card.subItem };
-        this.skillsVerseService.updateCard(card.id!, updatedCard).then(() => {
-          this.selectSubItem(card.subItem!); // reload only this item
-        });
+        const updated: SkillCard = { ...result.card, subItem: card.subItem };
+        this.skillsVerseService.updateCard(card.id!, updated).then(() => this.loadCards());
       }
     });
   }
 
   deleteCard(cardId: string) {
     if (!this.isSuperUser) return;
-
     this.skillsVerseService.deleteCard(cardId).then(() => {
-      this.cards = this.cards.filter(c => c.id !== cardId);
+      this.loadCards();
     });
   }
+
+  openIframe(url: string) {
+    this.selectedIframeUrl = url;
+  }
+
+  onLinkClick(link: string) {
+    // Convert YouTube link if needed
+    const youtubeRegex = /(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)/;
+    const match = link.match(youtubeRegex);
+    if (match && match[1]) {
+      link = `https://www.youtube.com/embed/${match[1]}?autoplay=1`;
+    }
+    this.iframeUrl = link;
+    setTimeout(() => {
+      this.iframeContainer?.nativeElement?.scrollIntoView({ behavior: 'smooth' });
+    }, 100);
+  }
+
+  closeIframe(): void {
+    this.iframeUrl = 'about:blank';
+  }
+  
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+  trackByCardId(index: number, card: SkillCard): string {
+  return card.id || index.toString();
+}
+
 }

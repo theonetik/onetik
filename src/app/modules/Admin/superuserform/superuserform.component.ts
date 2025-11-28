@@ -81,7 +81,6 @@ export class SuperuserformComponent implements OnInit {
 
       this.dialogRef.close(true);
     } catch (error) {
-      console.error('Firestore/Auth error:', error);
       this.snackBar.open('Error saving user: ' + (error as any)?.message, 'Close', { duration: 5000 });
     } finally {
       this.isSubmitting = false;

@@ -1,44 +1,60 @@
 <div class="country-tab-container">
-<mat-tab-group (selectedIndexChange)="categoryChanged($event)">
-  <mat-tab *ngFor="let cat of categories; let c = index" [label]="cat.name">
 
-    <mat-tab-group (selectedIndexChange)="subcategoryChanged($event)" class="mt-3">
-      <mat-tab *ngFor="let sub of cat.subcategories; let s = index" [label]="sub.title">
+  <mat-tab-group (selectedIndexChange)="categoryChanged($event)">
+    <mat-tab *ngFor="let cat of categories; let c = index" [label]="cat.name">
 
-        <mat-tab-group (selectedIndexChange)="selectSubItem(sub.items[$event])" class="mt-3">
-          <mat-tab *ngFor="let item of sub.items" [label]="item">
-            <div class="p-3">
-              <div class="d-flex justify-content-between align-items-center mb-3">
-                <h3>{{ item }}</h3>
+      <mat-tab-group (selectedIndexChange)="subcategoryChanged($event)" class="mt-3">
+        <mat-tab *ngFor="let sub of cat.subcategories; let s = index" [label]="sub.title">
+
+          <mat-tab-group (selectedIndexChange)="selectSubItem(sub.items[$event])" class="mt-3">
+            <mat-tab *ngFor="let item of sub.items" [label]="item">
+
+              <div class="p-3">
+
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <h3>{{ item }}</h3>
                   <div class="add-card-container" *ngIf="isSuperUser">
-                <button mat-raised-button color="primary" *ngIf="isSuperUser" (click)="addCard(item)">
-                  Add Card
-                </button>
+                    <button mat-stroked-button color="primary" (click)="addCard(item)">➕ Add Card</button>
+                  </div>
+
                 </div>
+
+
+
+                <!-- Cards Grid -->
+                <div class="cards-grid" *ngIf="paginatedCards.length > 0; else noCards">
+
+                  <app-skillcard *ngFor="let card of paginatedCards; trackBy: trackByCardId"  [card]="card" [isSuperUser]="isSuperUser"
+                    (edit)="editCard($event)" (delete)="deleteCard($event)" (openLink)="onLinkClick($event)">
+                  </app-skillcard>
+
+                </div>
+
+                <!-- Pagination -->
+                <mat-paginator [length]="cards.length" [pageSize]="pageSize" [pageIndex]="pageIndex"
+                  [pageSizeOptions]="[3, 6, 12]" (page)="onPageChange($event)" class="mt-4">
+                </mat-paginator>
+
+                <ng-template #noCards>
+                  <p>No cards available.</p>
+                </ng-template>
+
               </div>
+            </mat-tab>
+          </mat-tab-group>
 
-<div class="tab-content">
-              <div class="cards-grid"  *ngIf="cards.length > 0; else noCards">
-                <app-skillcard
-                  *ngFor="let card of cards"
-                  [card]="card"
-                  [isSuperUser]="isSuperUser"
-                  (edit)="editCard($event)"
-                  (delete)="deleteCard($event)">
-                </app-skillcard>
-              </div>
-              </div>
+        </mat-tab>
+      </mat-tab-group>
 
-              <ng-template #noCards>
-                <p>No cards available for this item yet.</p>
-              </ng-template>
-            </div>
-          </mat-tab>
-        </mat-tab-group>
+    </mat-tab>
+  </mat-tab-group>
 
-      </mat-tab>
-    </mat-tab-group>
+</div>
 
-  </mat-tab>
-</mat-tab-group>
+<!-- iFrame Viewer -->
+<div *ngIf="iframeUrl !== 'about:blank'" class="iframe-wrapper" #iframeContainer>
+  <button class="close-button" (click)="closeIframe()">×</button>
+  <iframe [src]="iframeUrl | safeUrl" width="100%" height="600px" frameborder="0"
+    style="border: 1px solid #ddd; border-radius: 8px;">
+  </iframe>
 </div>

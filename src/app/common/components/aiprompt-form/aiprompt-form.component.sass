@@ -1,0 +1,42 @@
+.form-container
+  max-width: 800px
+  width: 100%
+
+.form-row
+  display: flex
+  gap: 16px
+  margin-bottom: 16px
+  width: 100%
+
+.form-field-full
+  flex: 1
+  width: 100%
+
+.form-field-half
+  flex: 1
+  min-width: 0 // Prevents flex items from overflowing
+
+// Responsive breakpoints
+@media (max-width: 768px)
+  .form-row
+    flex-direction: column
+    gap: 0
+  
+  .form-field-half
+    width: 100%
+    margin-bottom: 16px
+
+@media (max-width: 480px)
+  .form-container
+    max-width: 100%
+  
+  .form-row
+    margin-bottom: 8px
+  
+  .form-field-half
+    margin-bottom: 8px
+
+// Ensure mat-form-field takes full width within flex container
+::ng-deep .form-field-full .mat-form-field-wrapper,
+::ng-deep .form-field-half .mat-form-field-wrapper
+  width: 100%
