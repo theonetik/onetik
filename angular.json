@@ -31,6 +31,10 @@
             "inlineStyleLanguage": "sass",
             "assets": [
               "src/favicon.ico",
+              "src/favicon.svg",
+              "src/favicon-96x96.png",
+              "src/apple-touch-icon.png",
+              "src/site.webmanifest",
               "src/assets"
             ],
             "scripts": []

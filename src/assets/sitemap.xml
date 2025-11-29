@@ -1,8 +1,196 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- Home -->
   <url>
     <loc>https://theonetik.com/</loc>
-    <lastmod>2025-09-17</lastmod>
+    <lastmod>2025-11-29</lastmod>
     <priority>1.00</priority>
   </url>
+
+  <!-- Skillverse Main -->
+  <url>
+    <loc>https://theonetik.com/skillverse</loc>
+    <lastmod>2025-11-29</lastmod>
+    <priority>0.95</priority>
+  </url>
+
+  <!-- Tech Skills -->
+  <!-- Loop through TechSkill categories and subcategories -->
+  <url>
+    <loc>https://theonetik.com/skillverse/frontend-development</loc>
+    <lastmod>2025-11-29</lastmod>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://theonetik.com/skillverse/backend-development</loc>
+    <lastmod>2025-11-29</lastmod>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://theonetik.com/skillverse/mobile-development</loc>
+    <lastmod>2025-11-29</lastmod>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://theonetik.com/skillverse/databases</loc>
+    <lastmod>2025-11-29</lastmod>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://theonetik.com/skillverse/devops</loc>
+    <lastmod>2025-11-29</lastmod>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://theonetik.com/skillverse/cloud</loc>
+    <lastmod>2025-11-29</lastmod>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://theonetik.com/skillverse/ai-ml</loc>
+    <lastmod>2025-11-29</lastmod>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://theonetik.com/skillverse/cybersecurity</loc>
+    <lastmod>2025-11-29</lastmod>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://theonetik.com/skillverse/tools-productivity</loc>
+    <lastmod>2025-11-29</lastmod>
+    <priority>0.90</priority>
+  </url>
+
+  <!-- Digital Skills -->
+  <url>
+    <loc>https://theonetik.com/skillverse/digital-marketing</loc>
+    <lastmod>2025-11-29</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://theonetik.com/skillverse/graphic-design</loc>
+    <lastmod>2025-11-29</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://theonetik.com/skillverse/video-multimedia</loc>
+    <lastmod>2025-11-29</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://theonetik.com/skillverse/office-productivity</loc>
+    <lastmod>2025-11-29</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://theonetik.com/skillverse/e-commerce-online-business</loc>
+    <lastmod>2025-11-29</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://theonetik.com/skillverse/programming-web-tools</loc>
+    <lastmod>2025-11-29</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://theonetik.com/skillverse/cloud-remote-tools</loc>
+    <lastmod>2025-11-29</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://theonetik.com/skillverse/ai-automation</loc>
+    <lastmod>2025-11-29</lastmod>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- E-Commerce Skills -->
+  <url>
+    <loc>https://theonetik.com/skillverse/e-commerce-platforms</loc>
+    <lastmod>2025-11-29</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://theonetik.com/skillverse/product-management</loc>
+    <lastmod>2025-11-29</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://theonetik.com/skillverse/marketing-sales</loc>
+    <lastmod>2025-11-29</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://theonetik.com/skillverse/operations-payments</loc>
+    <lastmod>2025-11-29</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://theonetik.com/skillverse/customer-support</loc>
+    <lastmod>2025-11-29</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://theonetik.com/skillverse/e-commerce-analytics-ai</loc>
+    <lastmod>2025-11-29</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://theonetik.com/skillverse/logistics-supply-chain</loc>
+    <lastmod>2025-11-29</lastmod>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Visa Guides -->
+  <url>
+    <loc>https://theonetik.com/visas</loc>
+    <lastmod>2025-11-29</lastmod>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://theonetik.com/visas/canada</loc>
+    <lastmod>2025-11-29</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://theonetik.com/visas/uk</loc>
+    <lastmod>2025-11-29</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://theonetik.com/visas/australia</loc>
+    <lastmod>2025-11-29</lastmod>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- Jobs -->
+  <url>
+    <loc>https://theonetik.com/jobs</loc>
+    <lastmod>2025-11-29</lastmod>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Education -->
+  <url>
+    <loc>https://theonetik.com/education</loc>
+    <lastmod>2025-11-29</lastmod>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- About -->
+  <url>
+    <loc>https://theonetik.com/about</loc>
+    <lastmod>2025-11-29</lastmod>
+    <priority>0.70</priority>
+  </url>
+
+  <!-- Contact -->
+  <url>
+    <loc>https://theonetik.com/contact</loc>
+    <lastmod>2025-11-29</lastmod>
+    <priority>0.70</priority>
+  </url>
+
 </urlset>
