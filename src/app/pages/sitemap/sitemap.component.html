@@ -1,0 +1,17 @@
+<div class="sitemap-page mat-typography">
+  <h1>Sitemap</h1>
+  <p>Explore all pages of TheOneTik for easy navigation.</p>
+
+  <div class="sitemap-cards">
+    <mat-card class="sitemap-card" *ngFor="let page of pages">
+      <mat-card-title>
+        <a [routerLink]="page.path">{{ page.name }}</a>
+      </mat-card-title>
+    </mat-card>
+  </div>
+
+  <p class="xml-info">
+    You can also <a href="/sitemap.xml" target="_blank">view/download the XML sitemap</a> for search engines.
+  </p>
+</div>
+

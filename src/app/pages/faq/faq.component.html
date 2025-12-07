@@ -1,0 +1,16 @@
+<div class="faq-page mat-typography">
+  <h1>Frequently Asked Questions (FAQ)</h1>
+  <p>Find answers to the most common questions about TheOneTik services, guidance, and policies.</p>
+
+  <mat-accordion multi>
+    <mat-expansion-panel *ngFor="let faq of faqs">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{ faq.question }}
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p>{{ faq.answer }}</p>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
+

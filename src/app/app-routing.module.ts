@@ -8,7 +8,6 @@ import { SuperuserlistComponent } from './modules/Admin/superuserlist/superuserl
 import { SuperuserformComponent } from './modules/Admin/superuserform/superuserform.component';
 import { SuperUserGuard } from './common/guards/super-user.guard';
 import { ItskillComponent } from './modules/SkillVerse/itskill/itskill.component';
-import { Digitalskill } from './common/classes/skillverse';
 import { DigtalskillComponent } from './modules/SkillVerse/digtalskill/digtalskill.component';
 import { EcommerceskillComponent } from './modules/SkillVerse/ecommerceskill/ecommerceskill.component';
 import { AIPromptComponent } from './modules/SkillVerse/aiprompt/aiprompt.component';
@@ -64,7 +63,11 @@ export const routes: Routes = [
     path: 'admin/super-users',
     component: SuperuserformComponent,
     canActivate: [SuperUserGuard]
-  }
+  },
+  { 
+  path: '', 
+  loadChildren: () => import('./pages/modules/trust-pages/trust-pages.module').then(m => m.TrustPagesModule) 
+}
 ];
 
 

@@ -1,0 +1,13 @@
+<div class="terms-page mat-typography">
+  <h1>Terms & Conditions</h1>
+  <p class="last-updated">Last Updated: {{ lastUpdated }}</p>
+
+  <div class="terms-sections">
+    <mat-card class="terms-card" *ngFor="let section of termsSections">
+      <mat-card-title>{{ section.title }}</mat-card-title>
+      <mat-card-content>
+        <p>{{ section.content }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

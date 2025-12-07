@@ -1,0 +1,59 @@
+<div class="contact-page mat-typography">
+
+  <h1>Contact Us</h1>
+  <p>Have a question or need assistance? Fill out the form below and we'll get back to you soon.</p>
+
+  <!-- Success Message -->
+  <mat-card *ngIf="successMessage" class="success-message">
+    <mat-icon>check_circle</mat-icon>
+    {{ successMessage }}
+  </mat-card>
+
+  <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form">
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Name *</mat-label>
+      <input matInput formControlName="name">
+      <mat-error *ngIf="submitted && f['name'].errors">
+        <span *ngIf="f['name'].errors['required']">Name is required</span>
+        <span *ngIf="f['name'].errors['minlength']">Name must be at least 3 characters</span>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Email *</mat-label>
+      <input matInput formControlName="email" type="email">
+      <mat-error *ngIf="submitted && f['email'].errors">
+        <span *ngIf="f['email'].errors['required']">Email is required</span>
+        <span *ngIf="f['email'].errors['email']">Email must be valid</span>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Subject *</mat-label>
+      <input matInput formControlName="subject">
+      <mat-error *ngIf="submitted && f['subject'].errors">
+        <span *ngIf="f['subject'].errors['required']">Subject is required</span>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Message *</mat-label>
+      <textarea matInput formControlName="message" rows="6"></textarea>
+      <mat-error *ngIf="submitted && f['message'].errors">
+        <span *ngIf="f['message'].errors['required']">Message is required</span>
+        <span *ngIf="f['message'].errors['minlength']">Message must be at least 10 characters</span>
+      </mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" class="full-width">Send Message</button>
+  </form>
+
+  <mat-divider></mat-divider>
+<mat-card class="contact-info"> 
+  <h2>Other Ways to Reach Us</h2>
+<p><strong>Email:</strong> theonetikofficial&#64;gmail.com</p>
+  <p><strong>Phone:</strong> +92 321 651 1 227</p>
+  <p><strong>Address:</strong> DHA phase 1 Lahore cantt Punjab Pakisatn </p>
+</mat-card>
+</div>

@@ -342,3 +342,84 @@ $active-hover: rgba(52, 152, 219, 0.2)
     margin-top: 16px
     color: $text-light
     font-size: 14px
+
+    .sidebar-footer-links
+  padding: 20px
+  display: flex
+  flex-direction: column
+  gap: 10px
+  margin-top: 20px
+
+  .footer-link
+    font-size: 14px
+    color: #777
+    text-decoration: none
+    cursor: pointer
+    padding: 4px 0
+
+    &:hover
+      color: #000
+      text-decoration: underline
+
+      .footer-section
+  margin-top: 20px
+  position: relative
+
+.footer-trigger
+  width: 100%
+  padding: 12px 6px
+  border: none
+  background: rgba(255, 255, 255, 0.1)
+  color: $text-light
+  border-radius: 8px
+  cursor: pointer
+  display: flex
+  align-items: center
+  justify-content: center
+  gap: 5px
+  transition: 0.3s ease
+
+  &:hover
+    background: rgba(255, 255, 255, 0.2)
+
+.footer-flyout
+  position: absolute
+  left: 100%
+  top: 0
+  width: 220px
+  background: $secondary-color
+  border-radius: 8px
+  padding: 10px
+  display: flex
+  flex-direction: column
+  gap: 10px
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3)
+  z-index: 9999
+
+  .footer-link
+    color: $text-light
+    text-decoration: none
+    font-size: 14px
+    padding: 8px 10px
+    border-radius: 6px
+
+    &:hover
+      background: rgba(255,255,255,0.1)
+
+      .footer-accordion
+  width: 200px !important
+  position: fixed
+  left: 90px   // slides outside to the right
+  bottom: 20px
+  z-index: 1000
+
+  mat-expansion-panel
+    background-color: $secondary-color
+    border-radius: 8px
+
+.footer-dropdown-links .footer-link
+  font-size: 14px
+  color: $text-light
+
+
+

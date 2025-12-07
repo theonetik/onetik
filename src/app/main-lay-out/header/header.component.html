@@ -1,0 +1,47 @@
+<header class="site-header">
+  <div class="header-container">
+    <!-- Logo/Brand -->
+    <div class="logo">
+      <a routerLink="/">
+        <span class="logo-icon">🌍</span>
+        <span class="logo-text">GeoPortal</span>
+      </a>
+    </div>
+
+    <!-- Search Bar (if needed) -->
+    <div class="header-search">
+      <input type="text" placeholder="Search Country" [(ngModel)]="searchQuery" />
+    </div>
+
+    <!-- Desktop Navigation -->
+    <nav class="desktop-nav">
+      <a routerLink="/about">About</a>
+      <a routerLink="/partners">Partners</a>
+      <a routerLink="/faq">FAQ</a>
+      <a routerLink="/contact">Contact</a>
+    </nav>
+
+    <!-- Mobile Menu Toggle -->
+    <button class="menu-toggle" (click)="toggleMenu()" aria-label="Toggle menu">
+      <span class="hamburger-icon" [class.open]="isMenuOpen">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+    </button>
+  </div>
+
+  <!-- Mobile Dropdown Menu -->
+  <div class="mobile-menu" [class.show]="isMenuOpen">
+    <nav>
+      <a routerLink="/about" (click)="closeMenu()">About Us</a>
+      <a routerLink="/partners" (click)="closeMenu()">Partners</a>
+      <a routerLink="/faq" (click)="closeMenu()">FAQ</a>
+      <a routerLink="/contact" (click)="closeMenu()">Contact</a>
+      <hr>
+      <a routerLink="/privacy-policy" (click)="closeMenu()">Privacy Policy</a>
+      <a routerLink="/terms-conditions" (click)="closeMenu()">Terms & Conditions</a>
+      <a routerLink="/cookie-policy" (click)="closeMenu()">Cookie Policy</a>
+    </nav>
+  </div>
+</header>

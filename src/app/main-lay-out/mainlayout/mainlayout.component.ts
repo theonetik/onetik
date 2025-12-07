@@ -20,6 +20,7 @@ import { SuperuserService } from 'src/app/modules/Admin/superuser.service';
 import { AuthService } from 'src/app/auth/auth.service';
 import { Subscription } from 'rxjs';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @Component({
   selector: 'app-mainlayout',
@@ -39,7 +40,9 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
     MatCardModule,
     RouterOutlet, 
     MatTooltipModule,
-    SidenavComponent
+    SidenavComponent,
+    MatDividerModule,
+     MatExpansionModule
   ],
   templateUrl: './mainlayout.component.html',
   styleUrl: './mainlayout.component.sass'
@@ -49,6 +52,7 @@ export class MainlayoutComponent implements OnDestroy {
   currentUserEmail = '';
   currentUserRole = '';
   isSuperUser: boolean = false;
+   footerOpen = false;
   
   // Screen size tracking
   isMobile = false;
@@ -116,6 +120,9 @@ export class MainlayoutComponent implements OnDestroy {
       this.currentUserRole = 'guest';
       this.isSuperUser = false;
     }
+     document.addEventListener('click', () => {
+    this.footerOpen = false;
+  });
   }
 
   ngOnDestroy() {
@@ -403,4 +410,13 @@ async logout() {
       this.sideNav.toggle();
     }
   }
+ 
+
+toggleFooter(event: MouseEvent) {
+  event.stopPropagation(); // prevent immediate close
+  this.footerOpen = !this.footerOpen;
+}
+closeFooter() {
+  this.footerOpen = false;
+}
 }

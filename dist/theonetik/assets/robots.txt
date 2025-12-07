@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# Prevent indexing private Angular admin pages
+Disallow: /admin
+Disallow: /superuser
+Disallow: /login
+Disallow: /signup
+Disallow: /forgot-password
+
+# Sitemap location
+Sitemap: https://theonetik.com/sitemap.xml
