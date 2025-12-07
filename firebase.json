@@ -6,21 +6,12 @@
       "**/.*",
       "**/node_modules/**"
     ],
-  "rewrites": [
-  {
-    "source": "/sitemap.xml",
-    "destination": "/assets/sitemap.xml"
-  },
-  {
-    "source": "/robots.txt",
-    "destination": "/assets/robots.txt"
-  },
-  {
-    "source": "**",
-    "destination": "/index.html"
-  }
-]
-
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
   },
   "functions": [
     {
